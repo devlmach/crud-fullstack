@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang=xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Opção de Ação </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: inline-block;
+            text-align: center;
+
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1> O que gostaria de fazer? </h1>
+        <a data-th-href="@{/register}" class="btn"> Cadastrar Cliente </a>
+        <a data-th-href="@{/list}" class="btn"> Listar Clientes </a>
+</body>
+</html>

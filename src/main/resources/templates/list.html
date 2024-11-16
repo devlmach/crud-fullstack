@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Clientes Cadastrados </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 60%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table th, table td {
+            padding: 10px;
+            text-align: left;
+        }
+        table th {
+            background-color: #007bff;
+            color: white;
+        }
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        table tr:hover {
+            background-color: #ddd;
+        }
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2> Lista de Clientes </h2>
+
+    <table class="table">
+        <tr>
+            <th> ID </th>
+            <th> Nome </th>
+            <th> CPF </th>
+            <th> Endereço </th>
+            <th>  </th>
+            <th>  </th>
+        </tr>
+        <tbody class="tbody">
+
+        <!-- Example with Thymeleaf -->
+        <tr data-th-each="customer : ${customer.content}">
+            <td data-th-text="${customer.id}"></td>
+            <td data-th-text="${customer.name}"></td>
+            <td data-th-text="${{customer.cpf}}"></td>
+            <td data-th-each="address : ${customer.addresses}" data-th-text="${address.street + ', ' + address.number}"> </td>
+            <td>
+                <a class="btn" data-th-href="@{'/edit/'+${customer.id}}"> Editar </a>
+            </td>
+            <td>
+                <a class="btn" data-th-href="@{'/delete/'+${customer.id}}"> Excluir </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a class="btn" th:if="${customer.hasPrevious()}" data-th-href="@{/list(page=${customer.number - 1})}"> Anterior </a>
+    <a class="btn" th:if="${customer.hasNext()}" data-th-href="@{/list(page=${customer.number + 1})}"> Próximo </a>
+
+
+    <a data-th-href="@{/register}" class="btn"> Cadastrar Novo Cliente </a>
+    <a data-th-href="@{/}" class="btn"> Início </a>
+
+</div>
+</body>
+</html>

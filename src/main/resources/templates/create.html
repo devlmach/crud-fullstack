@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Cadastrar/Editar Cliente </title>
+    <style>
+        body {
+            background: light-blue;
+            font: normal 15pt Arial;
+        }
+
+        section {
+            background: white;
+            border-radius: 10px;
+            padding: 15px
+            width: 200px;
+            margin: auto;
+
+        }
+
+        header {
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1> Cadastrar Cliente </h1>
+    </header>
+    <form method="post" action="/create" th:object="${customer}">
+        <input type="hidden" th:value="customer.id" th:field="*{id}"/>
+        <div class="mb-3">
+            <label for="name" class="name"> Nome: </label>
+            <input type="text" id="name" class="name" name="name" th:field="*{name}"> <br/>
+        </div>
+        <div class="mb-3">
+            <label for="cpf" class="name"> CPF: </label>
+            <input type="text" id="cpf" class="cpf" name="cpf" th:field="*{cpf}"> <br/>
+        </div>
+        <div class="mb-3">
+            <label for="addresses[0].street" class="addresses[0].street"> Rua: </label>
+            <input type="text" id="addresses[0].street" class="addresses[0].street" name="addresses[0].street" th:field="*{addresses[0].street}"> <br/>
+        </div>
+        <div class="mb-3">
+            <label for="addresses[0].number" class="addresses[0].number"> Número: </label>
+            <input type="text" id="addresses[0].number" class="addresses[0].number" name="addresses[0].number" th:field="*{addresses[0].number}"> <br/>
+        </div>
+
+        <button type="submit" class="btn"> Cadastrar </button>
+        <a data-th-href="@{/}" class="btn"> Início </a>
+    </form>
+
+</body>
+</html>
